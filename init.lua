@@ -98,6 +98,19 @@ vim.g.have_nerd_font = false
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+vim.g.go_jump_to_error = 0
+vim.g.go_fmt_command = 'goimports'
+vim.g.go_auto_sameids = 0
+
+vim.g.go_highlight_types = 1
+vim.g.go_highlight_fields = 1
+vim.g.go_highlight_functions = 1
+vim.g.go_highlight_function_calls = 1
+vim.g.go_highlight_operators = 1
+vim.g.go_highlight_extra_types = 1
+vim.g.go_highlight_build_constraints = 1
+vim.g.go_highlight_generate_tags = 1
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -345,6 +358,12 @@ require('lazy').setup({
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
+  },
+
+  {
+    'fatih/vim-go',
+    build = ':GoInstallBinaries', -- This runs :GoInstallBinaries after installing the plugin.
+    ft = 'go', -- Lazy-load vim-go only for Go files.
   },
 
   -- NOTE: Plugins can specify dependencies.
@@ -670,7 +689,7 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
+        gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
